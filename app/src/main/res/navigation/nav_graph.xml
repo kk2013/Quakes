@@ -10,19 +10,5 @@
         android:name="com.quakes.quakeslist.QuakesListFragment"
         android:label="@string/quakes_list_fragment_label"
         tools:layout="@layout/fragment_quakes_list">
-
-        <action
-            android:id="@+id/action_QuakesListFragment_to_QuakeMapFragment"
-            app:destination="@id/QuakeMapFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/QuakeMapFragment"
-        android:name="com.quakes.quakemap.QuakeMapFragment"
-        android:label="@string/quake_map_fragment_label"
-        tools:layout="@layout/fragment_quake_map">
-
-        <action
-            android:id="@+id/action_QuakeMapFragment_to_QuakesListFragment"
-            app:destination="@id/QuakesListFragment" />
     </fragment>
 </navigation>

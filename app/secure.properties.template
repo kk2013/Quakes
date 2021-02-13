@@ -1,0 +1,2 @@
+//Rename file to secure.properties and update with your Maps API key
+MAPS_API_KEY=<UPDATE_WITH_MAP_API_KEY>

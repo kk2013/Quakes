@@ -1,6 +1,5 @@
 package com.quakes.quakeslist
 
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,15 @@ import kotlinx.android.synthetic.main.quake_item_row.view.*
 class QuakeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(
-        quake: Earthquake?
+        quake: Earthquake?,
+        onClickListener: (Earthquake) -> Unit
     ) {
         quake?.let {
             itemView.eqid.text = it.eqid
             itemView.datetime.text = it.datetime
             itemView.latitude.text = String.format(itemView.context.getString(R.string.latitude), it.lat.toString())
             itemView.longitude.text = String.format(itemView.context.getString(R.string.longitude), it.lng.toString())
+            itemView.setOnClickListener { onClickListener(quake) }
         }
     }
 

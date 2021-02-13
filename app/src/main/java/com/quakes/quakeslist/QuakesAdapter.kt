@@ -1,15 +1,16 @@
 package com.quakes.quakeslist
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.quakes.model.Earthquake
 
-class QuakesAdapter : PagedListAdapter<Earthquake, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+class QuakesAdapter(private val onClickListener: (Earthquake) -> Unit) : PagedListAdapter<Earthquake, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as QuakeViewHolder).bind(getItem(position))
+        (holder as QuakeViewHolder).bind(getItem(position), onClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

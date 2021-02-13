@@ -1,11 +1,15 @@
 package com.quakes.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Earthquake(
     val datetime: String?,
-    val depth: Number?,
-    val lng: Number?,
+    val depth: Double?,
+    val lng: Double?,
     val src: String?,
     val eqid: String?,
-    val magnitude: Number?,
-    val lat: Number?
-)
+    val magnitude: Double?,
+    val lat: Double?
+) : Parcelable

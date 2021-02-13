@@ -3,7 +3,6 @@ package com.quakes.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.quakes.quakeslist.QuakesListFragment
-import com.quakes.quakemap.QuakeMapFragment
 import com.quakes.quakeslist.QuakesListViewModel
 import dagger.Binds
 import dagger.Module
@@ -18,9 +17,6 @@ abstract class QuakesModule {
 
     @ContributesAndroidInjector
     internal abstract fun quakesListFragment(): QuakesListFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun quakesMapFragment(): QuakeMapFragment
 
     @Binds
     @IntoMap

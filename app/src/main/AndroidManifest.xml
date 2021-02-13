@@ -12,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quakes">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${mapsApiKey}" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -22,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".quakemap.MapsMarkerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Quakes.NoActionBar"/>
     </application>
 
 </manifest>
