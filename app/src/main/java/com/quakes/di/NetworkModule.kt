@@ -55,6 +55,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesCatsService(retrofit: Retrofit): QuakesApi =
+    fun providesQuakesService(retrofit: Retrofit): QuakesApi =
         retrofit.create(QuakesApi::class.java)
 }
