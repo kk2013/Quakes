@@ -1,6 +1,7 @@
 package com.quakes.data
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.quakes.api.QuakesApi
 import com.quakes.model.Earthquake
@@ -13,6 +14,8 @@ class QuakesDataSource(
     private val service: QuakesApi
 ) : PageKeyedDataSource<Int, Earthquake>() {
 
+    val networkState = MutableLiveData<NetworkState>()
+
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Earthquake>
@@ -20,17 +23,19 @@ class QuakesDataSource(
         scope.launch {
             try {
                 val response = service.getQuakes(page = 1, perPage = params.requestedLoadSize)
-                when {
-                    response.isSuccessful -> {
-                        response.body()?.let { quakes ->
-                            quakes.earthquakes?.let {
-                                callback.onResult(it, null, 2)
-                            }
+                if (response.isSuccessful) {
+                    response.body()?.let { quakes ->
+                        quakes.earthquakes?.let {
+                            callback.onResult(it, null, 2)
+                            networkState.postValue(NetworkState.Success)
                         }
                     }
+                } else {
+                    networkState.postValue(NetworkState.Failed)
                 }
             } catch (exception: Exception) {
                 Log.e("QuakesDataSource", "Failed to fetch data: ${exception.message}")
+                networkState.postValue(NetworkState.Failed)
             }
         }
     }
@@ -40,17 +45,18 @@ class QuakesDataSource(
             try {
                 val page = params.key
                 val response = service.getQuakes(page = 1, perPage = params.requestedLoadSize)
-                when {
-                    response.isSuccessful -> {
-                        response.body()?.let { quakes ->
-                            quakes.earthquakes?.let {
-                                callback.onResult(it, page + 1)
-                            }
+                if (response.isSuccessful) {
+                    response.body()?.let { quakes ->
+                        quakes.earthquakes?.let {
+                            callback.onResult(it, page + 1)
                         }
                     }
+                } else {
+                    networkState.postValue(NetworkState.Failed)
                 }
             } catch (exception: Exception) {
                 Log.e("QuakesDataSource", "Failed to fetch data: ${exception.message}")
+                networkState.postValue(NetworkState.Failed)
             }
         }
     }

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.model.LatLng
 import com.quakes.R
+import com.quakes.data.NetworkState
 import com.quakes.di.ViewModelFactory
 import com.quakes.model.Earthquake
 import com.quakes.quakemap.MapsMarkerActivity
@@ -46,11 +47,19 @@ class QuakesListFragment : DaggerFragment() {
         quakes_recycler_view.layoutManager = layoutManager
         quakes_recycler_view.adapter = quakesAdapter
 
-        quakesViewModel.getQuakes().observe(this, Observer {
+        quakesViewModel.quakes.observe(this, Observer {
             quakesAdapter.submitList(it)
         })
 
-        quakesViewModel.getQuakes()
+        quakesViewModel.networkState.observe(this, Observer {
+            when (it) {
+                NetworkState.Loading -> progress_bar.visibility = View.VISIBLE
+                NetworkState.Success -> progress_bar.visibility = View.GONE
+                NetworkState.Failed -> progress_bar.visibility = View.GONE
+            }
+        })
+
+//        quakesViewModel
     }
 
     private fun showQuakeLocation(quake: Earthquake) {
