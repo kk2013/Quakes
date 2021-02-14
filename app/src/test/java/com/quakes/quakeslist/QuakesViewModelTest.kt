@@ -1,11 +1,13 @@
-package com.quakes.data
+package com.quakes.quakeslist
 
 import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.quakes.quakeslist.QuakesListViewModel
+import com.quakes.data.QuakesDataSource
+import com.quakes.data.QuakesDataSourceFactory
+import com.quakes.data.QuakesRepository
 import org.junit.Before
 import org.junit.Test
 
