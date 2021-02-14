@@ -4,7 +4,9 @@
     <!-- Strings used for fragments for navigation -->
     <string name="quakes_list_fragment_label">Quakes List Fragment</string>
     <string name="quake_map_fragment_label">Quakes Map Fragment</string>
-    <string name="previous">Previous</string>
+    <string name="earthquake">Earthquake: %s</string>
+    <string name="magnitude">Magnitude: %s</string>
+    <string name="date">Date: %s</string>
     <string name="latitude">Latitude: %s</string>
     <string name="longitude">Longitude: %s</string>
 </resources>

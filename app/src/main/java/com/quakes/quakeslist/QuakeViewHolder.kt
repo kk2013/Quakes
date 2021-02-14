@@ -1,5 +1,6 @@
 package com.quakes.quakeslist
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +16,20 @@ class QuakeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         onClickListener: (Earthquake) -> Unit
     ) {
         quake?.let {
-            itemView.eqid.text = it.eqid
-            itemView.datetime.text = it.datetime
-            itemView.latitude.text = String.format(itemView.context.getString(R.string.latitude), it.lat.toString())
-            itemView.longitude.text = String.format(itemView.context.getString(R.string.longitude), it.lng.toString())
+            itemView.eqid.text = formatText(R.string.earthquake, it.eqid)
+            itemView.magnitude.text = formatText(R.string.magnitude, it.magnitude.toString())
+            if(it.magnitude > 8) {
+                itemView.magnitude.setTextColor(Color.RED)
+            }
+            itemView.datetime.text = formatText(R.string.date, it.datetime)
+            itemView.latitude.text = formatText(R.string.latitude, it.lat.toString())
+            itemView.longitude.text = formatText(R.string.longitude, it.lng.toString())
             itemView.setOnClickListener { onClickListener(quake) }
         }
+    }
+
+    private fun formatText(resId: Int, value: String): String {
+        return String.format(itemView.context.getString(resId), value)
     }
 
     companion object {
