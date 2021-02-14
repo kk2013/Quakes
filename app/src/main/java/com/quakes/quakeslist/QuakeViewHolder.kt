@@ -18,7 +18,7 @@ class QuakeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         quake?.let {
             itemView.eqid.text = formatText(R.string.earthquake, it.eqid)
             itemView.magnitude.text = formatText(R.string.magnitude, it.magnitude.toString())
-            if(it.magnitude > 8) {
+            if(it.magnitude >= 8) {
                 itemView.magnitude.setTextColor(Color.RED)
             }
             itemView.datetime.text = formatText(R.string.date, it.datetime)

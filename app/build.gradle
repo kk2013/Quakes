@@ -98,4 +98,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okttpVersion"
+    androidTestImplementation 'com.schibsted.spain:barista:3.7.0'
 }

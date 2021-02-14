@@ -58,8 +58,6 @@ class QuakesListFragment : DaggerFragment() {
                 NetworkState.Failed -> progress_bar.visibility = View.GONE
             }
         })
-
-//        quakesViewModel
     }
 
     private fun showQuakeLocation(quake: Earthquake) {
